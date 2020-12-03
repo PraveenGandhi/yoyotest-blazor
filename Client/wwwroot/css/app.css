@@ -1,0 +1,104 @@
+﻿#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+.margin40 {
+    margin: 40px 0 !important;
+}
+
+.margin30 {
+    margin: 30px 0 !important;
+}
+
+.circular.segment {
+    width: 135px;
+    height: 135px;
+}
+
+.circular.segment i {
+    margin: 10px;
+}
+
+.column.border {
+    border-right: 2px solid lightgrey;
+}
+
+.info div p {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.dark {
+    color: #376155 !important;
+}
+
+.progress .bar.orange,
+.stop {
+    background-color: #e7847c !important;
+}
+
+.warn {
+    background-color: #556f90 !important;
+}
+
+.number {
+    color: #556f90;
+}
+
+.warn,
+.stop {
+    border-radius: 10px !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+.item {
+    padding-top: 10px !important;
+    padding-bottom: 5px !important;
+}
+
+.item .content {
+    font-weight: 900;
+}
+
+.main {
+    font-size: 16px;
+    color: #556f90;
+    margin-bottom: 5px;
+}
+
+.sub {
+    font-size: 12px;
+}
+
+.item select, .item select:active, .item select:focus, .item select:visited {
+    border: none !important;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2f564e;
+    background-color: transparent;
+}
+
+#results {
+    background-color: #2f564e;
+    color: #fff;
+}
+
+.red.text {
+    color: #e7847c !important;
+}
+
+.button.mini {
+    padding: 4px 13px !important;
+}
+
+.ui.small.progress .bar {
+    height: 0.7em;
+}

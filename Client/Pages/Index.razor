@@ -1,0 +1,91 @@
+﻿@page "/"
+@if (Athletes == null) {
+    <div class="ui active dimmer">
+        <div class="ui massive slow green double text loader">Loading Data..</div>
+    </div>
+}
+else {
+    <div class="ui container">
+        <div class="ui center aligned header margin40">YoYo Test</div>
+
+        <div class="ui two column centered grid">
+            <div class="ui raised circular segment">
+                <p hidden="@IsStarted">
+                    <i class="huge dark green icon play" @onclick="Start"></i>
+                </p>
+                <div class="info" hidden="@(!IsStarted || IsCompleted)">
+                    <p class="main">Level @CurrentShuttle.SpeedLevel</p>
+                    <p class="main">Shuttle @CurrentShuttle.ShuttleNo</p>
+                    <p class="sub">@CurrentShuttle.Speed km/h</p>
+                </div>
+                <div hidden="@(!IsCompleted)">
+                    <br>
+                    <span class="ui red text">Test Completed</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui small orange progress margin30" data-total="@RatingData.Length">
+            <div class="bar @(IsStarted ? "orange" : "")" style="width: @Percent%;">
+                <div class="progress"></div>
+            </div>
+        </div>
+
+        <div class="ui container">
+            <div hidden="@IsCompleted">
+                <div class="ui three column grid info" hidden="@IsCompleted">
+                    <div class="center aligned column border">
+                        <p>@((MarkupString) NextShuttleText)</p>
+                        <span class="ui dark green text">@NextShuttleIn s</span>
+                    </div>
+                    <div class="center aligned column border">
+                        <p>Total <br>Time</p>
+                        <span class="ui dark green text">@TimeLapsed m</span>
+                    </div>
+                    <div class="center aligned column">
+                        <p>Total <br>Distance</p>
+                        <span class="ui dark green text">@TotalDistance m</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div hidden="@(!IsCompleted)">
+            <button class="ui fluid button" id="results">See Results</button>
+        </div>
+        
+        <h1 class="ui small dark dividing header">Track</h1>
+        
+        <div class="ui divided list">
+            @foreach (var athlete in Athletes) {
+                <div class="item" data-id="@athlete.Id">
+                    <div class="right floated content" hidden="@(!IsStarted)">
+                        <div hidden="@athlete.Stop">
+                            <button class="ui mini blue button warn" disabled="@(athlete.Warn)"
+                                    @onclick="@(() => Warn(athlete))">
+                                @(athlete.Warn ? "Warned" : "Warn")
+                            </button>
+                            <button class="ui mini red button stop" disabled="@(!athlete.Warn)"
+                                    @onclick="@(() => Stop(athlete))">
+                                Stop
+                            </button>
+                        </div>
+                        <select value="@athlete.Result" @onchange="(e)=> OnResultChange(e.Value.ToString(), athlete)" hidden="@(!athlete.Stop)">
+                            <option></option>
+                            @foreach (var rating in RatingData) {
+                                <option selected="@IsSelected(rating, athlete)">
+                                    @rating.SpeedLevel-@rating.ShuttleNo
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="content">
+                        <span class="number">@athlete.Id .</span> @athlete.Name
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <div class="ui divider"></div>
+    </div>
+}

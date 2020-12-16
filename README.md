@@ -1,5 +1,5 @@
 # yoyotest-blazor
-YoYo Test app built with Blazor Server (aspnet core)
+YoYo Test app built with Blazor WebAssembly (aspnet core)
 
 
 ## To Run
